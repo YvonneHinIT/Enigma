@@ -45,11 +45,10 @@ button {
 
 #resultaat {
     margin-top: 50px;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-gap: 5px;
-    align-items: center;
     max-width: 700px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
 }
 
 #codeerDit {
@@ -120,13 +119,14 @@ button {
     border-top: 2px solid;
 }
 
-
 #enigmaCodeVeld {
     display: flex;
     flex-wrap: wrap;
     border: 2px solid black;
     height: fit-content;
-    width: 520px;
+    width: 480px;
+
+
     display: flex;
     padding: 10px;
     gap: 5px;
@@ -138,7 +138,7 @@ button {
     flex-wrap: wrap;
     border: 2px solid black;
     height: fit-content;
-    width: 520px;
+    width: 480px;
     display: flex;
     padding: 10px;
     gap: 5px;
@@ -149,12 +149,20 @@ button {
     width: fit-content;
     height: 60px;
     background-color: rgb(127, 255, 140);
-    border-color: rgb(30, 174, 44);   
+    border-color: rgb(30, 174, 44);  
+    color: rgb(20, 130, 43); 
 }
 
 .verwijder {
     width: fit-content;
     height: 60px;
     background-color: rgb(252, 72, 72);
-    border-color: rgb(174, 30, 30);   
+    border-color: rgb(174, 30, 30);
+    color: rgb(92, 30, 30);   
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    gap: 5px;  
 }

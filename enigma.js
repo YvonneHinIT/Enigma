@@ -32,25 +32,31 @@ function nieuwCodeVeld (ingevuldeTekst){
     let geselecteerdVak = sleutelPlek.value;
     let sleutel = Number(geselecteerdeKleur) + Number(geselecteerdVak);
 
+    //container
+    const container = document.createElement("div");
+    container.classList.add("container");
+    const resultaat = document.getElementById("resultaat");
+    resultaat.appendChild(container);
+
     //codeveld
     const divCodeElement = document.createElement("div");
     divCodeElement.id = "enigmaCodeVeld";
-    divCodeElement.classList.add(sleutel);
-    const parent = document.getElementById("resultaat");
-    parent.appendChild(divCodeElement);
+    container.appendChild(divCodeElement);
 
     //decodeer button.
     const buttonDecodeer = document.createElement("button");
-    buttonDecodeer.classList.add(sleutel, "decodeer");
+    buttonDecodeer.classList.add(sleutel, "decodeer")
     buttonDecodeer.innerText = "Decodeer";
-    parent.appendChild(buttonDecodeer);
+    container.appendChild(buttonDecodeer);
 
     //verwijder button.
     const buttonVerwijder = document.createElement("button");
-    buttonVerwijder.classList.add(sleutel, "verwijder");
+    buttonVerwijder.classList.add("verwijder");
     buttonVerwijder.innerText = "Verwijder";
-    parent.appendChild(buttonVerwijder);
-    
+    container.appendChild(buttonVerwijder);
+
+    buttonDecodeer.addEventListener('click', decodeer);
+    buttonVerwijder.addEventListener('click', verwijder);
     enigmaCode (ingevuldeTekst); 
 };
 
@@ -141,4 +147,14 @@ function sleuterVeranderPlaats (plaats) {
             b++;
         }
     }
+};
+
+//Decodeer button click.
+function decodeer () {
+    console.log("decodeer")
+};
+
+//Verwijder button click
+function verwijder () {
+    this.parentNode.remove();
 };
