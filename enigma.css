@@ -1,0 +1,140 @@
+body {
+    font-family: Calibri;
+    font-weight: 500;
+    width: fit-content;
+    text-align: center;
+    font-size: 1.2em;
+}
+
+td {
+    width: 60px;
+    height: 60px;
+}
+
+#enigma {
+    display: flex;
+    gap: 10px;
+}
+
+#invul {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+} 
+
+textarea {
+    margin: 30px;
+    width: 300px;
+    height: 60px;
+    border: 2px solid rgb(15, 15, 134);
+    border-radius: 3px;
+    font-size: 1.2em;
+    resize: none;
+}
+
+button {
+    width: 310px;
+    height: 35px;
+    border: 2px solid rgb(15, 15, 134);
+    border-radius: 3px;
+    color: rgb(15, 15, 134);
+    font-family: Calibri;
+    font-size: 1.2em;
+}
+
+#resultaat {
+    margin-top: 50px;
+}
+
+#codeerDit {
+    font-size: 1.3em;
+}
+
+.vorigeTekst {
+    font-size: 1.3em;
+}
+
+.blauw td {
+    border-color: blue;
+}
+
+.rood td {
+    border-color: red;
+}
+
+.groen td {
+    border-color: green;
+}
+
+.aa {
+   border-bottom: 2px solid;
+   border-right: 2px solid;
+}
+
+.ab {
+    border-left: 2px solid;
+    border-bottom: 2px solid;
+    border-right: 2px solid;
+}
+
+.ac {
+    border-left: 2px solid;
+    border-bottom: 2px solid;
+}
+
+.ba {
+    border-top: 2px solid;
+    border-right: 2px solid;
+    border-bottom: 2px solid;
+}
+
+.bb {
+    border: 2px solid; 
+}
+
+.bc {
+    border-top: 2px solid;
+    border-left: 2px solid;
+    border-bottom: 2px solid;
+}
+
+.ca {
+    border-top: 2px solid;
+    border-right: 2px solid;
+}
+
+.cb {
+    border-left: 2px solid;
+    border-top: 2px solid;
+    border-right: 2px solid;
+}
+
+.cc {
+    border-left: 2px solid;
+    border-top: 2px solid;
+}
+
+
+#enigmaCodeVeld {
+    display: flex;
+    flex-wrap: wrap;
+    border: 2px solid black;
+    height: fit-content;
+    width: 620px;
+    display: flex;
+    padding: 10px;
+    gap: 5px;
+    row-gap: 5px;
+}
+
+.vorigeCodeVeld {
+    display: flex;
+    flex-wrap: wrap;
+    border: 2px solid black;
+    height: fit-content;
+    width: 620px;
+    display: flex;
+    padding: 10px;
+    gap: 5px;
+    row-gap: 5px;
+}

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enigma</title>
+    <link rel="stylesheet" href="enigma.css"/>
+    <script type="text/javascript" src="enigma.js" defer></script>
+</head>
+<body>
+    <header>
+        <h1>Enigma</h1>
+    </header>
+    <section>
+        <label for="kleur" for="plek">Sleutel:</label>
+        <select name="kleur" id="kleur">
+            <option value="0">Blauw</option>
+            <option value="9">Rood</option>
+            <option value="18">Groen</option>
+        </select>
+        <select name="plek" id="plek">
+            <option value="0">Vak 1</option>
+            <option value="1">Vak 2</option>
+            <option value="2">Vak 3</option>
+            <option value="3">Vak 4</option>
+            <option value="4">Vak 5</option>
+            <option value="5">Vak 6</option>
+            <option value="6">Vak 7</option>
+            <option value="7">Vak 8</option>
+            <option value="8">Vak 9</option>
+        </select>
+    </section>
+    <section id="enigma">
+        <table class="blauw">
+            <tr>
+                <td class="aa">A</td>
+                <td class="ab">B</td>
+                <td class="ac">C</td>
+            </tr>
+            <tr>
+                <td class="ba">D</td>
+                <td class="bb">E</td>
+                <td class="bc">F</td>
+            </tr>
+            <tr>
+                <td class="ca">G</td>
+                <td class="cb">H</td>
+                <td class="cc">I</td>
+            </tr>
+        </table>
+        <table class="rood">
+            <tr>
+                <td class="aa">J</td>
+                <td class="ab">K</td>
+                <td class="ac">L</td>
+            </tr>
+            <tr>
+                <td class="ba">M</td>
+                <td class="bb">N</td>
+                <td class="bc">O</td>
+            </tr>
+            <tr>
+                <td class="ca">P</td>
+                <td class="cb">Q</td>
+                <td class="cc">R</td>
+            </tr>
+        </table>
+        <table class="groen">
+            <tr>
+                <td class="aa">S</td>
+                <td class="ab">T</td>
+                <td class="ac">U</td>
+            </tr>
+            <tr>
+                <td class="ba">V</td>
+                <td class="bb">W</td>
+                <td class="bc">X</td>
+            </tr>
+            <tr>
+                <td class="ca">Y</td>
+                <td class="cb">Z</td>
+                <td class="cc"> </td>
+            </tr>
+        </table>
+    </section>
+    <section id="invul">
+        <textarea id="tekst" maxlength="36" pattern="[A-Za-z]" 
+            placeholder="Typ hier de tekst die je wilt coderen. Maximaal 36 tekens."></textarea>
+        <button id="codeerButton">Codeer tekst</button>
+    </section>
+    <section id="resultaat"> 
+        <!-- Wordt ingevuld na op de button geklikt te hebben --> 
+    </section>
+</body>
+</html>
