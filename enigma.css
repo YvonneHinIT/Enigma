@@ -14,6 +14,7 @@ td {
 #enigma {
     display: flex;
     gap: 10px;
+    justify-content: center;
 }
 
 #invul {
@@ -44,6 +45,11 @@ button {
 
 #resultaat {
     margin-top: 50px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 5px;
+    align-items: center;
+    max-width: 700px;
 }
 
 #codeerDit {
@@ -120,7 +126,7 @@ button {
     flex-wrap: wrap;
     border: 2px solid black;
     height: fit-content;
-    width: 620px;
+    width: 520px;
     display: flex;
     padding: 10px;
     gap: 5px;
@@ -132,9 +138,23 @@ button {
     flex-wrap: wrap;
     border: 2px solid black;
     height: fit-content;
-    width: 620px;
+    width: 520px;
     display: flex;
     padding: 10px;
     gap: 5px;
     row-gap: 5px;
+}
+
+.decodeer {
+    width: fit-content;
+    height: 60px;
+    background-color: rgb(127, 255, 140);
+    border-color: rgb(30, 174, 44);   
+}
+
+.verwijder {
+    width: fit-content;
+    height: 60px;
+    background-color: rgb(252, 72, 72);
+    border-color: rgb(174, 30, 30);   
 }

@@ -8,25 +8,18 @@ function buttonClick () {
     const leesTekst = document.getElementById("tekst");
     const ingevuldeTekst = leesTekst.value;
     const codeVeld = document.getElementById("enigmaCodeVeld")
-    //Als er tekst in het tekstveld staat 
+ 
     //En er is eerder gecodeerd.
     if (leesTekst.value !== "" && codeVeld !== null) {
-        //Geeft class aan laatst gecodeerde tekst
-        //En verwijderd id's.
-        let tekstResultaat = document.getElementById("codeerDit");
-        tekstResultaat.classList.add("vorigeTekst");
-        tekstResultaat.id = "";
         codeVeld.id = "";
         codeVeld.classList.add("vorigeCodeVeld");
-        //Roept functie aan met de ingevulde tekst.
+
         nieuwCodeVeld (ingevuldeTekst); 
     }
-    //Als er tekst in het tekstveld staat.
-    //En er nog niet eerder is gecodeerd.
+    //Eerste keer coderen.
     else if (leesTekst.value !== "") {        
-        //Roept functie aan met de ingevulde tekst.
         nieuwCodeVeld (ingevuldeTekst); 
-    //Als er geen tekst in het tekstveld staat.
+    
     } else {
         alert("Vul eerst tekst in om te coderen.");
     }
@@ -34,43 +27,38 @@ function buttonClick () {
 
 //Maakt nieuw codeveld aan met gecodeerde tekst.
 function nieuwCodeVeld (ingevuldeTekst){
-    //Maakt nieuwe div waar tekst in komt te staan.
-    const divTekstElement = document.createElement("div");
-    divTekstElement.textContent = ingevuldeTekst;
-    divTekstElement.id = "codeerDit";
-    const parentTekstElement = document.getElementById("resultaat");
-    parentTekstElement.appendChild(divTekstElement);
-     //Maakt nieuwe div waar code in komt te staan.
-    const divCodeElement = document.createElement("div");
-    divCodeElement.id = "enigmaCodeVeld";
-    const parentCodeElement = document.getElementById("resultaat");
-    parentCodeElement.appendChild(divCodeElement);
-//@@    //Maakt nieuwe div in div.
-    // const buttonDiv = document.createElement("div");
-    // buttonDiv.id("buttons")
-    // const parentDivDiv = document.getElementById("enigmaCodeVeld");
-    // parentDivDiv.appendChild(buttonDiv);
-//@@    //Maakt nieuwe button in div.
-    const buttonElement = document.createElement("button");
+    //sleutel
     let geselecteerdeKleur = sleutelKleur.value;
     let geselecteerdVak = sleutelPlek.value;
-    let plaats = Number(geselecteerdeKleur) + Number(geselecteerdVak);
-    buttonElement.classList.add(plaats);
-    const parentButton = document.getElementById("buttons")
-    parentButton.appendChild(buttonElement);
+    let sleutel = Number(geselecteerdeKleur) + Number(geselecteerdVak);
+
+    //codeveld
+    const divCodeElement = document.createElement("div");
+    divCodeElement.id = "enigmaCodeVeld";
+    divCodeElement.classList.add(sleutel);
+    const parent = document.getElementById("resultaat");
+    parent.appendChild(divCodeElement);
+
+    //decodeer button.
+    const buttonDecodeer = document.createElement("button");
+    buttonDecodeer.classList.add(sleutel, "decodeer");
+    buttonDecodeer.innerText = "Decodeer";
+    parent.appendChild(buttonDecodeer);
+
+    //verwijder button.
+    const buttonVerwijder = document.createElement("button");
+    buttonVerwijder.classList.add(sleutel, "verwijder");
+    buttonVerwijder.innerText = "Verwijder";
+    parent.appendChild(buttonVerwijder);
     
-    //Roept functie aan met de ingevulde tekst.
     enigmaCode (ingevuldeTekst); 
 };
 
 //Vult het divElement 'enigmaCodeVeld' met de enigma code.
 function enigmaCode (ingevuldeTekst) {
     const enigmaElement = document.getElementsByTagName("td");
-    //Slaat ingevulde tekst als losse arrays op.
     const storeText = ingevuldeTekst.toUpperCase().split("");
-    //Gaat alle bovenstaande arrays af
-    //zoekt het juiste vak op om de bijbehorende css stijl 
-    //te kopieren in het 'enigmaCodeVeld'.
+    
     for (let i = 0; i < storeText.length; i++) {
         let storeLetter = storeText[i];
             //Maakt van enter een spatie.
