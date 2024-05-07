@@ -124,7 +124,7 @@ button {
     flex-wrap: wrap;
     border: 2px solid black;
     height: fit-content;
-    width: 480px;
+    width: 485px;
 
 
     display: flex;
@@ -138,7 +138,7 @@ button {
     flex-wrap: wrap;
     border: 2px solid black;
     height: fit-content;
-    width: 480px;
+    width: 485px;
     display: flex;
     padding: 10px;
     gap: 5px;

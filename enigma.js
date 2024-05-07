@@ -7,7 +7,7 @@ button.addEventListener('click', buttonClick);
 function buttonClick () { 
     const leesTekst = document.getElementById("tekst");
     const ingevuldeTekst = leesTekst.value;
-    const codeVeld = document.getElementById("enigmaCodeVeld")
+    const codeVeld = document.getElementById("enigmaCodeVeld");
  
     //En er is eerder gecodeerd.
     if (leesTekst.value !== "" && codeVeld !== null) {
@@ -62,7 +62,7 @@ function nieuwCodeVeld (ingevuldeTekst){
 
 //Vult het divElement 'enigmaCodeVeld' met de enigma code.
 function enigmaCode (ingevuldeTekst) {
-    const enigmaElement = document.getElementsByTagName("td");
+    const enigmaElement = document.querySelectorAll("#enigma td");
     const storeText = ingevuldeTekst.toUpperCase().split("");
     
     for (let i = 0; i < storeText.length; i++) {
@@ -74,15 +74,15 @@ function enigmaCode (ingevuldeTekst) {
         for (let j = 0; j < enigmaElement.length; j++) {
             const storeEnigmaLetter = enigmaElement[j].textContent
             if (storeLetter == storeEnigmaLetter) {
-            //Maak nieuw td element aan waar css stijl naar wordt gekopieerd.
-            const tdCodeElement = document.createElement("td");
-            const enigmaStyle = window.getComputedStyle(enigmaElement[j]);
-            tdCodeElement.style.borderBottom = enigmaStyle.borderBottom;
-            tdCodeElement.style.borderTop = enigmaStyle.borderTop;
-            tdCodeElement.style.borderRight = enigmaStyle.borderRight;
-            tdCodeElement.style.borderLeft = enigmaStyle.borderLeft;
-            const parentElement = document.getElementById("enigmaCodeVeld");
-            parentElement.appendChild(tdCodeElement);
+                //Maak nieuw td element aan waar css stijl naar wordt gekopieerd.
+                const tdCodeElement = document.createElement("td");
+                const enigmaStyle = window.getComputedStyle(enigmaElement[j]);
+                tdCodeElement.style.borderBottom = enigmaStyle.borderBottom;
+                tdCodeElement.style.borderTop = enigmaStyle.borderTop;
+                tdCodeElement.style.borderRight = enigmaStyle.borderRight;
+                tdCodeElement.style.borderLeft = enigmaStyle.borderLeft;
+                const parentElement = document.getElementById("enigmaCodeVeld");
+                parentElement.appendChild(tdCodeElement);
             }
         } 
     }
@@ -151,10 +151,71 @@ function sleuterVeranderPlaats (plaats) {
 
 //Decodeer button click.
 function decodeer () {
-    console.log("decodeer")
+    const enigmaElement = document.querySelectorAll("#enigma td");
+
+    const decodeerVeld = this.parentNode;
+    const decodeerTd = decodeerVeld.getElementsByTagName("td");
+
+    if (this.textContent == "Decodeer") {
+        this.textContent = "Codeer";
+        for (let plaats = 0 ; plaats < enigmaElement.length; plaats++) {
+            if (this.classList.contains(plaats)) {
+                sleuterVeranderPlaats (plaats);
+            }
+        }
+
+        for (let i = 0; i < decodeerTd.length; i++) {
+            for (let j = 0; j < enigmaElement.length; j++) {
+                const enigmaStyle = window.getComputedStyle(enigmaElement[j]);
+
+                if (decodeerTd[i].style.borderBottom == enigmaStyle.borderBottom &&
+                    decodeerTd[i].style.borderTop == enigmaStyle.borderTop &&
+                    decodeerTd[i].style.borderRight == enigmaStyle.borderRight &&
+                    decodeerTd[i].style.borderLeft == enigmaStyle.borderLeft) {
+                        decodeerTd[i].textContent = enigmaElement[j].textContent;
+                        decodeerTd[i].removeAttribute("style");
+                        decodeerTd[i].style.width = 'fit-content';
+                        decodeerTd[i].style.height = '30px';
+                }
+            }
+        }
+        sleutelSom();
+    }
+
+    else if (this.textContent == "Codeer") {
+        this.textContent = "Decodeer";
+
+        for (let plaats = 0 ; plaats < enigmaElement.length; plaats++) {
+            if (this.classList.contains(plaats)) {
+                sleuterVeranderPlaats (plaats);
+            }
+        }
+
+        let ingevuldeTekst = [];
+        for (let i = 0; i < decodeerTd.length; i++) {
+            ingevuldeTekst.push(decodeerTd[i].textContent);
+
+            for (let j = 0; j < enigmaElement.length; j++) {
+                const storeEnigmaLetter = enigmaElement[j].textContent;
+                if (ingevuldeTekst[i] == storeEnigmaLetter) {
+                    const enigmaStyle = window.getComputedStyle(enigmaElement[j])
+                    decodeerTd[i].style.width = '60px';
+                    decodeerTd[i].style.height = '60px';
+                    decodeerTd[i].textContent = "";
+                    decodeerTd[i].style.borderBottom = enigmaStyle.borderBottom;
+                    decodeerTd[i].style.borderTop = enigmaStyle.borderTop;
+                    decodeerTd[i].style.borderRight = enigmaStyle.borderRight;
+                    decodeerTd[i].style.borderLeft = enigmaStyle.borderLeft;
+                }
+            }
+        }
+        sleutelSom();
+    }
 };
+
 
 //Verwijder button click
 function verwijder () {
     this.parentNode.remove();
 };
+
