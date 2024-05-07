@@ -156,14 +156,16 @@ function decodeer () {
     const decodeerVeld = this.parentNode;
     const decodeerTd = decodeerVeld.getElementsByTagName("td");
 
+    //Verwijderd styling en showt tekst
     if (this.textContent == "Decodeer") {
         this.textContent = "Codeer";
+
         for (let plaats = 0 ; plaats < enigmaElement.length; plaats++) {
             if (this.classList.contains(plaats)) {
                 sleuterVeranderPlaats (plaats);
             }
         }
-
+        
         for (let i = 0; i < decodeerTd.length; i++) {
             for (let j = 0; j < enigmaElement.length; j++) {
                 const enigmaStyle = window.getComputedStyle(enigmaElement[j]);
@@ -172,6 +174,7 @@ function decodeer () {
                     decodeerTd[i].style.borderTop == enigmaStyle.borderTop &&
                     decodeerTd[i].style.borderRight == enigmaStyle.borderRight &&
                     decodeerTd[i].style.borderLeft == enigmaStyle.borderLeft) {
+
                         decodeerTd[i].textContent = enigmaElement[j].textContent;
                         decodeerTd[i].removeAttribute("style");
                         decodeerTd[i].style.width = 'fit-content';
@@ -182,6 +185,7 @@ function decodeer () {
         sleutelSom();
     }
 
+    //Verwijderd text en showt styling
     else if (this.textContent == "Codeer") {
         this.textContent = "Decodeer";
 
@@ -197,11 +201,14 @@ function decodeer () {
 
             for (let j = 0; j < enigmaElement.length; j++) {
                 const storeEnigmaLetter = enigmaElement[j].textContent;
+
                 if (ingevuldeTekst[i] == storeEnigmaLetter) {
-                    const enigmaStyle = window.getComputedStyle(enigmaElement[j])
+                    const enigmaStyle = window.getComputedStyle(enigmaElement[j]);
+
                     decodeerTd[i].style.width = '60px';
                     decodeerTd[i].style.height = '60px';
                     decodeerTd[i].textContent = "";
+
                     decodeerTd[i].style.borderBottom = enigmaStyle.borderBottom;
                     decodeerTd[i].style.borderTop = enigmaStyle.borderTop;
                     decodeerTd[i].style.borderRight = enigmaStyle.borderRight;
