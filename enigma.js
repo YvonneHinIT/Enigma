@@ -48,15 +48,15 @@ function nieuwCodeVeld (ingevuldeTekst){
     buttonDecodeer.classList.add(sleutel, "decodeer")
     buttonDecodeer.innerText = "Decodeer";
     container.appendChild(buttonDecodeer);
+    buttonDecodeer.addEventListener('click', decodeer);
 
     //verwijder button.
     const buttonVerwijder = document.createElement("button");
     buttonVerwijder.classList.add("verwijder");
     buttonVerwijder.innerText = "Verwijder";
     container.appendChild(buttonVerwijder);
-
-    buttonDecodeer.addEventListener('click', decodeer);
     buttonVerwijder.addEventListener('click', verwijder);
+
     enigmaCode (ingevuldeTekst); 
 };
 
