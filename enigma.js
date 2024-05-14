@@ -27,11 +27,6 @@ function buttonClick () {
 
 //Maakt nieuw codeveld aan met gecodeerde tekst.
 function nieuwCodeVeld (ingevuldeTekst){
-    //sleutel
-    let geselecteerdeKleur = sleutelKleur.value;
-    let geselecteerdVak = sleutelPlek.value;
-    let sleutel = Number(geselecteerdeKleur) + Number(geselecteerdVak);
-
     //container
     const container = document.createElement("div");
     container.classList.add("container");
@@ -43,12 +38,17 @@ function nieuwCodeVeld (ingevuldeTekst){
     divCodeElement.id = "enigmaCodeVeld";
     container.appendChild(divCodeElement);
 
+    //sleutel
+    let geselecteerdeKleur = sleutelKleur.value;
+    let geselecteerdVak = sleutelPlek.value;
+    let sleutel = Number(geselecteerdeKleur) + Number(geselecteerdVak); 
+
     //decodeer button.
     const buttonDecodeer = document.createElement("button");
     buttonDecodeer.classList.add(sleutel, "decodeer")
     buttonDecodeer.innerText = "Decodeer";
     container.appendChild(buttonDecodeer);
-    buttonDecodeer.addEventListener('click', decodeer);
+    buttonDecodeer.addEventListener('click', decodeerKnop);
 
     //verwijder button.
     const buttonVerwijder = document.createElement("button");
@@ -60,7 +60,7 @@ function nieuwCodeVeld (ingevuldeTekst){
     enigmaCode (ingevuldeTekst); 
 };
 
-//Vult het divElement 'enigmaCodeVeld' met de enigma code.
+//Vult div 'enigmaCodeVeld' met de enigma code.
 function enigmaCode (ingevuldeTekst) {
     const enigmaElement = document.querySelectorAll("#enigma td");
     const storeText = ingevuldeTekst.toUpperCase().split("");
@@ -150,22 +150,23 @@ function sleuterVeranderPlaats (plaats) {
 };
 
 //Decodeer button click.
-function decodeer () {
+function decodeerKnop () {
     const enigmaElement = document.querySelectorAll("#enigma td");
 
     const decodeerVeld = this.parentNode;
     const decodeerTd = decodeerVeld.getElementsByTagName("td");
 
-    //Verwijderd styling en showt tekst
     if (this.textContent == "Decodeer") {
         this.textContent = "Codeer";
 
+        //Selecteerd juiste sleutel
         for (let plaats = 0 ; plaats < enigmaElement.length; plaats++) {
             if (this.classList.contains(plaats)) {
                 sleuterVeranderPlaats (plaats);
             }
         }
         
+        //Verwijderd enigmacode en showt tekst
         for (let i = 0; i < decodeerTd.length; i++) {
             for (let j = 0; j < enigmaElement.length; j++) {
                 const enigmaStyle = window.getComputedStyle(enigmaElement[j]);
@@ -182,27 +183,28 @@ function decodeer () {
                 }
             }
         }
-        sleutelSom();
     }
 
-    //Verwijderd text en showt styling
+    
     else if (this.textContent == "Codeer") {
         this.textContent = "Decodeer";
 
+        //Selecteerd juiste sleutel
         for (let plaats = 0 ; plaats < enigmaElement.length; plaats++) {
             if (this.classList.contains(plaats)) {
                 sleuterVeranderPlaats (plaats);
             }
         }
 
+        //Verwijderd text en showt enigmacode
         let ingevuldeTekst = [];
         for (let i = 0; i < decodeerTd.length; i++) {
             ingevuldeTekst.push(decodeerTd[i].textContent);
 
             for (let j = 0; j < enigmaElement.length; j++) {
-                const storeEnigmaLetter = enigmaElement[j].textContent;
+                const EnigmaLetter = enigmaElement[j].textContent;
 
-                if (ingevuldeTekst[i] == storeEnigmaLetter) {
+                if (ingevuldeTekst[i] == EnigmaLetter) {
                     const enigmaStyle = window.getComputedStyle(enigmaElement[j]);
 
                     decodeerTd[i].style.width = '60px';
@@ -213,11 +215,11 @@ function decodeer () {
                     decodeerTd[i].style.borderTop = enigmaStyle.borderTop;
                     decodeerTd[i].style.borderRight = enigmaStyle.borderRight;
                     decodeerTd[i].style.borderLeft = enigmaStyle.borderLeft;
-                }
+               }
             }
         }
-        sleutelSom();
     }
+    sleutelSom();
 };
 
 
